@@ -60,25 +60,20 @@ char ler_keypad() {
     return '\0';
 }
 
+// Função para inicializar um pino como saída e definir seu estado inicial
+void configurar_saida(uint pin) {
+    gpio_init(pin);
+    gpio_set_dir(pin, GPIO_OUT);
+    gpio_put(pin, 0);
+}
+
 // Inicialização dos LEDs e buzzers
 void iniciar_saidas() {
-    gpio_init(LED_VERMELHO);
-    gpio_set_dir(LED_VERMELHO, GPIO_OUT);
-    gpio_init(LED_AZUL);
-    gpio_set_dir(LED_AZUL, GPIO_OUT);
-    gpio_init(LED_VERDE);
-    gpio_set_dir(LED_VERDE, GPIO_OUT);
-
-    gpio_init(BUZZER_A);
-    gpio_set_dir(BUZZER_A, GPIO_OUT);
-    gpio_init(BUZZER_B);
-    gpio_set_dir(BUZZER_B, GPIO_OUT);
-
-    gpio_put(LED_VERMELHO, 0);
-    gpio_put(LED_AZUL, 0);
-    gpio_put(LED_VERDE, 0);
-    gpio_put(BUZZER_A, 0);
-    gpio_put(BUZZER_B, 0);
+    configurar_saida(LED_VERMELHO);
+    configurar_saida(LED_AZUL);
+    configurar_saida(LED_VERDE);
+    configurar_saida(BUZZER_A);
+    configurar_saida(BUZZER_B);
 }
 
 // Função principal
@@ -120,4 +115,3 @@ int main() {
 
     return 0;
 }
-
